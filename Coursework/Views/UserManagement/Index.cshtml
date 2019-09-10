@@ -1,0 +1,32 @@
+﻿@model Coursework.ViewModels.UserManagementIndexViewModel
+@inject UserManager<User> userManager
+@using Microsoft.AspNetCore.Identity
+@using Coursework.Models
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Members</title>
+</head>
+<body>
+    <h2> Members List</h2>
+    <div id="members-container">
+        <br/>
+    @foreach (var user in Model.Users)
+    {
+        <div id="members">
+            <div id="left"><img src="~/images/profile icon.png" alt="" width="150px" height="150px" id="profile-img" /></div>
+            
+            <div id="member-content">
+                <p id="member-element">@user.Email </p>
+                <p id="member-element">@user.FirstName </p>
+                <p id="member-element">@user.LastName </p>
+                <p id="member-element">@(string.Join(",", await userManager.GetRolesAsync(user)))</p>
+                <p id="member-add-role"><a asp-controller="UserManagement" asp-action="AddRole" asp-route-id="@user.Id">Add Role</a></p>
+            </div>
+            
+        </div>
+    }
+
+    </div>
+</body>
+</html>

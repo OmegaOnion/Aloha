@@ -1,0 +1,74 @@
+@model Coursework.ViewModels.AnnouncementDetailsViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body class="bodyPad">
+
+
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>@Html.DisplayFor(model => model.Announcement.Title)</h4>
+        <hr />
+
+        @Html.DisplayFor(model => model.Announcement.Message) <br/> <br/>
+ 
+        @Html.DisplayNameFor(model => model.Announcement.Views) : @Html.DisplayFor(model => model.Announcement.Views)     Posted : @Html.DisplayFor(model => model.Announcement.Time)
+    </div>
+
+
+
+    <form asp-action="Details">
+        <div class="form-horizontal">
+            <h4>Comments</h4>
+            <hr />
+
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AnnouncementId" value=@Model.Announcement.Id class="text-danger" />
+            <div class="form-group">             
+                    <input asp-for="Message" class="form-control" />
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="blue-button" style="width:20%;" value="Post Comment" class="btn btn-default" />
+                </div>
+            </div>
+
+            <!-- Other Fields-->
+
+        </div>
+    </form>
+
+    
+
+        @foreach (var item in Model.Comments)
+            {
+            <div id="announcements">
+                @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName) <br />
+                @Html.DisplayFor(modelItem => item.Message)
+                <br />
+            </div>
+        }
+
+           
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Announcement.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+
+    </body>
+</html>

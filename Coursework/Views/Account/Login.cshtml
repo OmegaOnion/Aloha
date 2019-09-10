@@ -1,0 +1,42 @@
+﻿
+@model Coursework.ViewModels.LoginViewModel
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body class="bodyPad">
+    <h2>Login</h2>
+    <div class="regPad">
+        <div id="login">
+            <!-- Registration form-->
+            <form asp-controller="Account" asp-action="Login" method="post">
+                <div class="aspValid" asp-validation-summary="All"></div>
+
+                <div>
+                    <label asp-for="Email"></label><br />
+                    <input id="wide" asp-for="Email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Password"></label><br />
+                    <input id="wide" asp-for="Password" />
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <br />
+                
+                <div><input class="blue-button" type="submit" value="Login" /></div>
+
+                
+                <a asp-action="Register">Click here to register</a>
+                <div class="remember">
+                    <label asp-for="Remember"></label>
+                    <input asp-for="Remember" />
+                    <span asp-validation-for="Remember"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿@{
+    if (this.User.IsInRole("Admin"))
+    {
+        Layout = "_Layout";
+    } else if (this.User.IsInRole("Member"))
+    {
+        Layout = "_MemberLayout";
+    } else
+    {
+        Layout = "_AnonymousLayout";
+
+    }
+
+}

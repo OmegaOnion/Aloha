@@ -1,0 +1,35 @@
+@model IEnumerable<Coursework.Models.Announcement>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body class="bodyPad">
+
+    <br/>
+    <p>
+        <a class="blue-button" asp-action="Create">Create New Announcement</a>
+    </p>
+
+    @foreach (var item in Model)
+    {
+        <div id="announcements">
+            Posted: @Html.DisplayFor(modelItem => item.Time)
+            <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+            <p style="background: #ffffff">@Html.DisplayFor(modelItem => item.Message)</p>
+            Views : @Html.DisplayFor(modelItem => item.Views)
+            <a asp-action="Details" asp-route-id="@item.Id">View Comments</a>
+           
+            <a style = "float:right" asp-action="Edit" asp-route-id="@item.Id"><u>Edit</u></a>   
+             
+            <a style = "float:right; margin-right:5px;" asp-action="Delete" asp-route-id="@item.Id"><u>Delete</u></a>
+        </div> <br />
+    }
+
+
+</body>
+</html>
